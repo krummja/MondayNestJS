@@ -12,7 +12,6 @@
     "noLib": false,
     "outDir": "./dist",
     "rootDir": "./lib",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
