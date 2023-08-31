@@ -7,4 +7,3 @@ const NO_CREDENTIALS_IN_REQUEST = `Not authenticated. No credentials in request.
 exports.NO_CREDENTIALS_IN_REQUEST = NO_CREDENTIALS_IN_REQUEST;
 const MISSING_SIGNING_SECRET = `Missing client signing secret.`;
 exports.MISSING_SIGNING_SECRET = MISSING_SIGNING_SECRET;
-//# sourceMappingURL=monday-auth.errors.js.map

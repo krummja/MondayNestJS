@@ -29,4 +29,3 @@ exports.MondayTokenMiddleware = MondayTokenMiddleware = __decorate([
     __param(0, (0, common_1.Inject)(monday_constants_1.MONDAY_SDK_ADAPTER)),
     __metadata("design:paramtypes", [Object])
 ], MondayTokenMiddleware);
-//# sourceMappingURL=monday-token.middleware.js.map

@@ -19,4 +19,3 @@ __exportStar(require("./gql"), exports);
 __exportStar(require("./interfaces"), exports);
 __exportStar(require("./monday.constants"), exports);
 __exportStar(require("./monday.module"), exports);
-//# sourceMappingURL=index.js.map

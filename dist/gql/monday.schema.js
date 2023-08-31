@@ -1,7 +1,14 @@
 "use strict";
+/*
+ * -------------------------------------------------------
+ * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+ * -------------------------------------------------------
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkspaceIcon = exports.Workspace = exports.Webhook = exports.Version = exports.User = exports.Update = exports.Team = exports.Tag = exports.Reply = exports.IQuery = exports.Plan = exports.OutOfOffice = exports.Notification = exports.IMutation = exports.Item = exports.Group = exports.Folder = exports.Complexity = exports.ColumnValue = exports.Column = exports.BoardView = exports.BoardDuplication = exports.Board = exports.Asset = exports.AppMonetizationStatus = exports.ActivityLogType = exports.AccountProduct = exports.Account = exports.WorkspaceSubscriberKind = exports.WorkspacesOrderBy = exports.WorkspaceKind = exports.WebhookEventType = exports.VersionKind = exports.UserKind = exports.State = exports.PositionRelative = exports.NotificationTargetType = exports.GroupAttributes = exports.FolderColor = exports.FirstDayOfTheWeek = exports.DuplicateBoardType = exports.ColumnType = exports.ColumnProperty = exports.BoardSubscriberKind = exports.BoardsOrderBy = exports.BoardObjectType = exports.BoardKind = exports.BoardAttributes = exports.AssetsSource = exports.AccountProductKind = void 0;
 exports.WorkspaceSettings = void 0;
+/* tslint:disable */
+/* eslint-disable */
 var AccountProductKind;
 (function (AccountProductKind) {
     AccountProductKind["core"] = "core";
@@ -291,4 +298,3 @@ exports.WorkspaceIcon = WorkspaceIcon;
 class WorkspaceSettings {
 }
 exports.WorkspaceSettings = WorkspaceSettings;
-//# sourceMappingURL=monday.schema.js.map

@@ -21,4 +21,3 @@ let MondayModule = exports.MondayModule = MondayModule_1 = class MondayModule {
 exports.MondayModule = MondayModule = MondayModule_1 = __decorate([
     (0, common_1.Module)({})
 ], MondayModule);
-//# sourceMappingURL=monday.module.js.map

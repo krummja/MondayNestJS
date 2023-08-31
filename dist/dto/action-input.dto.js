@@ -8,4 +8,3 @@ exports.WorkflowBlock = WorkflowBlock;
 class Action {
 }
 exports.Action = Action;
-//# sourceMappingURL=action-input.dto.js.map

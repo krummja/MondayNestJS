@@ -51,4 +51,3 @@ exports.MondayAuthMiddleware = MondayAuthMiddleware = __decorate([
     __param(0, (0, common_1.Inject)(monday_constants_1.MONDAY_MODULE_OPTIONS)),
     __metadata("design:paramtypes", [Object])
 ], MondayAuthMiddleware);
-//# sourceMappingURL=monday-auth.middleware.js.map

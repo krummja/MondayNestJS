@@ -45,4 +45,3 @@ let MondayInputMiddleware = exports.MondayInputMiddleware = class MondayInputMid
 exports.MondayInputMiddleware = MondayInputMiddleware = __decorate([
     (0, common_1.Injectable)()
 ], MondayInputMiddleware);
-//# sourceMappingURL=monday-input.middleware.js.map

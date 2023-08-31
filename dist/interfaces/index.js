@@ -16,4 +16,3 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./monday-options.interface"), exports);
 __exportStar(require("./monday-sdk.interface"), exports);
-//# sourceMappingURL=index.js.map

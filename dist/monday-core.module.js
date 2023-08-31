@@ -14,8 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var MondayCoreModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MondayCoreModule = void 0;
+// External Dependencies
 const common_1 = require("@nestjs/common");
 const mondaySdk = require("monday-sdk-js");
+// Library Dependencies
 const monday_constants_1 = require("./monday.constants");
 const middleware_1 = require("./middleware");
 let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class MondayCoreModule {
@@ -59,6 +61,7 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
             .apply(middleware_1.MondayAuthMiddleware, middleware_1.MondayTokenMiddleware, middleware_1.MondayInputMiddleware).forRoutes(...this.options.routes);
     }
     async onApplicationShutdown(signal) {
+        // TODO Shutdown error logging.
     }
 };
 exports.MondayCoreModule = MondayCoreModule = MondayCoreModule_1 = __decorate([
@@ -67,4 +70,3 @@ exports.MondayCoreModule = MondayCoreModule = MondayCoreModule_1 = __decorate([
     __param(0, (0, common_1.Inject)(monday_constants_1.MONDAY_MODULE_OPTIONS)),
     __metadata("design:paramtypes", [Object])
 ], MondayCoreModule);
-//# sourceMappingURL=monday-core.module.js.map
