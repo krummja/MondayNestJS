@@ -66,6 +66,13 @@ export class MondayCoreModule implements OnApplicationShutdown, NestModule {
     }
 
     public static forRootAsync(options: MondayModuleAsyncOptions = {}): DynamicModule {
+        const mondayAdapterProvider: Provider = {
+            provide: MONDAY_SDK_ADAPTER,
+            useFactory: async (options: MondayModuleAsyncOptions) => {
+                return this.createMondayClientFactory(options as MondayModuleOptions);
+            },
+            inject: [MONDAY_MODULE_OPTIONS],
+        };
 
         const asyncProviders = this.createAsyncProviders(options);
 
@@ -75,6 +82,7 @@ export class MondayCoreModule implements OnApplicationShutdown, NestModule {
                 provide: MONDAY_MODULE_ID,
                 useValue: uuid(),
             },
+            mondayAdapterProvider,
             ...(options.extraProviders || []),
         ];
 
