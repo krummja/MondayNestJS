@@ -17,6 +17,12 @@ let MondayModule = exports.MondayModule = MondayModule_1 = class MondayModule {
             imports: [monday_core_module_1.MondayCoreModule.forRoot(options)],
         };
     }
+    static forRootAsync(options) {
+        return {
+            module: MondayModule_1,
+            imports: [monday_core_module_1.MondayCoreModule.forRootAsync(options)],
+        };
+    }
 };
 exports.MondayModule = MondayModule = MondayModule_1 = __decorate([
     (0, common_1.Module)({})
