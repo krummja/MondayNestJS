@@ -1,4 +1,4 @@
-import mondaySdk from "monday-sdk-js";
+import mondaySdk = require("monday-sdk-js");
 
 import { ClientData } from "monday-sdk-js/types/client-data.interface";
 import { ClientExecute } from "monday-sdk-js/types/client-execute.interface";
