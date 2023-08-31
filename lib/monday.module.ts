@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
 
-import { MondayModuleOptions } from "./interfaces";
+import { MondayModuleAsyncOptions, MondayModuleOptions } from "./interfaces";
 import { MondayCoreModule } from "./monday-core.module";
 
 
@@ -11,6 +11,13 @@ export class MondayModule {
         return {
             module: MondayModule,
             imports: [MondayCoreModule.forRoot(options)],
+        };
+    }
+
+    public static forRootAsync(options: MondayModuleAsyncOptions): DynamicModule {
+        return {
+            module: MondayModule,
+            imports: [MondayCoreModule.forRootAsync(options)],
         };
     }
 }
