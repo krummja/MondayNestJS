@@ -50,6 +50,13 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
         };
     }
     static forRootAsync(options = {}) {
+        const mondayAdapterProvider = {
+            provide: monday_constants_1.MONDAY_SDK_ADAPTER,
+            useFactory: async (options) => {
+                return this.createMondayClientFactory(options);
+            },
+            inject: [monday_constants_1.MONDAY_MODULE_OPTIONS],
+        };
         const asyncProviders = this.createAsyncProviders(options);
         const providers = [
             ...asyncProviders,
@@ -57,6 +64,7 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
                 provide: monday_constants_1.MONDAY_MODULE_ID,
                 useValue: (0, uuid_1.v4)(),
             },
+            mondayAdapterProvider,
             ...(options.extraProviders || []),
         ];
         const exports = [];
