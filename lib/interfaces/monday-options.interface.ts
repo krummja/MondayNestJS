@@ -15,7 +15,9 @@ export type MondayModuleOptions = {
 };
 
 
-export interface MondayOptionsFactory {}
+export interface MondayOptionsFactory {
+    createMondayModuleOptions(): Promise<MondayModuleOptions> | MondayModuleOptions;
+}
 
 
 export interface MondayModuleAsyncOptions

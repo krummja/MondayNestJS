@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MondayCoreModule = void 0;
 // External Dependencies
 const common_1 = require("@nestjs/common");
+const uuid_1 = require("uuid");
 const mondaySdk = require("monday-sdk-js");
 // Library Dependencies
 const monday_constants_1 = require("./monday.constants");
@@ -48,6 +49,24 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
             ],
         };
     }
+    static forRootAsync(options = {}) {
+        const asyncProviders = this.createAsyncProviders(options);
+        const providers = [
+            ...asyncProviders,
+            {
+                provide: monday_constants_1.MONDAY_MODULE_ID,
+                useValue: (0, uuid_1.v4)(),
+            },
+            ...(options.extraProviders || []),
+        ];
+        const exports = [];
+        return {
+            module: MondayCoreModule_1,
+            imports: options.imports,
+            providers,
+            exports,
+        };
+    }
     static createMondayClientFactory(options) {
         const sdk = mondaySdk({
             apiVersion: options.version,
@@ -55,6 +74,38 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
             clientId: options.clientId,
         });
         return sdk;
+    }
+    static createAsyncProviders(options) {
+        if (options.useExisting || options.useFactory) {
+            return [this.createAsyncOptionsProvider(options)];
+        }
+        const useClass = options.useClass;
+        return [
+            this.createAsyncOptionsProvider(options),
+            {
+                provide: useClass,
+                useClass,
+            }
+        ];
+    }
+    static createAsyncOptionsProvider(options) {
+        if (options.useFactory) {
+            return {
+                provide: monday_constants_1.MONDAY_MODULE_OPTIONS,
+                useFactory: options.useFactory,
+                inject: options.inject || [],
+            };
+        }
+        const inject = [
+            (options.useClass || options.useExisting),
+        ];
+        return {
+            provide: monday_constants_1.MONDAY_MODULE_OPTIONS,
+            useFactory: async (optionsFactory) => {
+                await optionsFactory.createMondayModuleOptions();
+            },
+            inject,
+        };
     }
     configure(consumer) {
         consumer

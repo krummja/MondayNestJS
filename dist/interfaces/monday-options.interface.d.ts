@@ -11,6 +11,7 @@ export type MondayModuleOptions = {
     routes?: (string | Type<any> | RouteInfo)[];
 };
 export interface MondayOptionsFactory {
+    createMondayModuleOptions(): Promise<MondayModuleOptions> | MondayModuleOptions;
 }
 export interface MondayModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
     name?: string;
