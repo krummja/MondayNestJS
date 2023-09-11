@@ -1,6 +1,6 @@
 import { ColumnType } from "../gql/monday.schema";
 export type ContextFields = Pick<InputFields, "boardId" | "userId">;
-export type TriggerFields = Pick<InputFields, "itemId" | "groupId" | "isTopGroup" | "columnType" | "columnId" | "columnValue">;
+export type TriggerFields = Pick<InputFields, "itemId" | "groupId" | "isTopGroup" | "columnType" | "columnId" | "columnValue" | "itemValues">;
 export type AdditionalFields = Omit<InputFields, keyof ContextFields | keyof TriggerFields>;
 export interface InputFields {
     boardId: number;
