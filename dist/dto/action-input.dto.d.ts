@@ -11,6 +11,7 @@ export interface InputFields {
     columnType?: ColumnType;
     columnId?: string;
     columnValue?: any;
+    itemValues?: any;
     [key: string]: any;
 }
 export declare class WorkflowBlock<T extends InputFields> {
