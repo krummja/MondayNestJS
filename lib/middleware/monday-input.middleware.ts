@@ -36,6 +36,7 @@ export class MondayInputMiddleware implements NestMiddleware {
             columnType,
             columnId,
             columnValue,
+            itemValues,
             ...additional
         } = inputFields;
 
@@ -51,6 +52,7 @@ export class MondayInputMiddleware implements NestMiddleware {
             columnType,
             columnId,
             columnValue,
+            itemValues,
         };
 
         const recipe = additional;
