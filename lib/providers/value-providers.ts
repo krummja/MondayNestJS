@@ -28,15 +28,27 @@ export const ValueProviders: Provider[] = [
     {
         provide: GROUP_TITLE,
         useFactory: (service: MondayService) => {
-            return async (itemId: string) => {
-                const options = { variables: { itemId } };
+            return async (boardId: string, itemId: string) => {
+                const options = { variables: { boardId, itemId } };
                 const result = await service.sdk.api(/* GraphQL */`
-                    query GetGroupTitle($itemId: ID!) {
-
+                    query GetGroupTitle($boardId: ID!, $itemId: ID!) {
+                        boards(ids: [$boardId]) {
+                            items_page(query_params: { ids: [$itemId] }) {
+                                items {
+                                    group {
+                                        id
+                                        title
+                                    }
+                                }
+                            }
+                        }
                     }
                 `, options);
 
-                return result.data.groups[0].title;
+                const boards = result.data.boards;
+                const items = boards[0].items_page.items;
+                const group = items[0].group;
+                return group.title;
             };
         },
         inject: [MONDAY_SERVICE],
