@@ -21,7 +21,7 @@ let MondayInputMiddleware = exports.MondayInputMiddleware = class MondayInputMid
         next();
     }
     processInput(inputFields) {
-        const { boardId, userId, itemId, groupId, isTopGroup, columnType, columnId, columnValue, ...additional } = inputFields;
+        const { boardId, userId, itemId, groupId, isTopGroup, columnType, columnId, columnValue, itemValues, ...additional } = inputFields;
         const context = {
             boardId,
             userId,
@@ -33,6 +33,7 @@ let MondayInputMiddleware = exports.MondayInputMiddleware = class MondayInputMid
             columnType,
             columnId,
             columnValue,
+            itemValues,
         };
         const recipe = additional;
         return {
