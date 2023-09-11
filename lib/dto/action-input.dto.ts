@@ -8,7 +8,13 @@ export type ContextFields = Pick<
 
 export type TriggerFields = Pick<
     InputFields,
-    "itemId" | "groupId" | "isTopGroup" | "columnType" | "columnId" | "columnValue"
+    | "itemId"
+    | "groupId"
+    | "isTopGroup"
+    | "columnType"
+    | "columnId"
+    | "columnValue"
+    | "itemValues"
 >;
 
 export type AdditionalFields = Omit<InputFields, keyof ContextFields | keyof TriggerFields>;
