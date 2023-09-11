@@ -2,6 +2,8 @@ import { Provider } from "@nestjs/common";
 import { MONDAY_SERVICE, MondayService } from "../monday.service";
 
 export const ITEM_NAME = "GET_ITEM_NAME";
+export const GROUP_TITLE = "GET_GROUP_TITLE";
+export const WORKSPACE_COUNT = "GET_WORKSPACE_COUNT";
 
 export const ValueProviders: Provider[] = [
     {
@@ -23,4 +25,48 @@ export const ValueProviders: Provider[] = [
         },
         inject: [MONDAY_SERVICE],
     },
+    {
+        provide: GROUP_TITLE,
+        useFactory: (service: MondayService) => {
+            return async (itemId: string) => {
+                const options = { variables: { itemId } };
+                const result = await service.sdk.api(/* GraphQL */`
+                    query GetGroupTitle($itemId: ID!) {
+
+                    }
+                `, options);
+
+                return result.data.groups[0].title;
+            };
+        },
+        inject: [MONDAY_SERVICE],
+    },
+    {
+        provide: WORKSPACE_COUNT,
+        useFactory: (service: MondayService) => {
+            return async () => {
+                let limit = 100;
+                let page = 1;
+                let total = 0;
+
+                const query = /* GraphQL */`
+                    query GetWorkspaces($page: Int) {
+                        workspaces(page: $page, limit: 100)
+                    }
+                `;
+
+                while (true) {
+                    const result = await service.sdk.api(query, { variables: { page } });
+                    const current = result.data.workspaces;
+                    total += current.length;
+
+                    if (current.length === 0 || total % limit > 0) break;
+                    page++;
+                }
+
+                return total;
+            };
+        },
+        inject: [MONDAY_SERVICE],
+    }
 ];
