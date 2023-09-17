@@ -56,6 +56,7 @@ exports.ValueProviders = [
                         }
                     }
                 `, options);
+                return result.data.boards[0];
             };
         },
         inject: [monday_service_1.MONDAY_SERVICE],

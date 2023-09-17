@@ -57,6 +57,8 @@ export const ValueProviders: Provider[] = [
                         }
                     }
                 `, options);
+
+                return result.data.boards[0];
             }
         },
         inject: [MONDAY_SERVICE],
