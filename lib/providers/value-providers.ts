@@ -4,6 +4,7 @@ import { MONDAY_SERVICE, MondayService } from "../monday.service";
 export const ITEM_NAME = "GET_ITEM_NAME";
 export const GROUP_TITLE = "GET_GROUP_TITLE";
 export const FOLDER_ID = "GET_FOLDER_ID";
+export const BOARD_METADATA = "GET_BOARD_METADATA";
 export const WORKSPACE_ID = "GET_WORKSPACE_ID";
 export const WORKSPACE_COUNT = "GET_WORKSPACE_COUNT";
 
@@ -24,6 +25,39 @@ export const ValueProviders: Provider[] = [
 
                 return result.data.items[0].name;
             };
+        },
+        inject: [MONDAY_SERVICE],
+    },
+    {
+        provide: BOARD_METADATA,
+        useFactory: (service: MondayService) => {
+            return async (boardId: string) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */`
+                    query GetBoardMetadata($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            id
+                            name
+                            type
+                            board_kind
+
+                            workspace_id
+                            board_folder_id
+
+                            columns {
+                                id
+                                title
+                                type
+                            }
+
+                            groups {
+                                id
+                                title
+                            }
+                        }
+                    }
+                `, options);
+            }
         },
         inject: [MONDAY_SERVICE],
     },
