@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValueProviders = exports.WORKSPACE_COUNT = exports.GROUP_TITLE = exports.ITEM_NAME = void 0;
+exports.ValueProviders = exports.WORKSPACE_COUNT = exports.WORKSPACE_ID = exports.FOLDER_ID = exports.GROUP_TITLE = exports.ITEM_NAME = void 0;
 const monday_service_1 = require("../monday.service");
 exports.ITEM_NAME = "GET_ITEM_NAME";
 exports.GROUP_TITLE = "GET_GROUP_TITLE";
+exports.FOLDER_ID = "GET_FOLDER_ID";
+exports.WORKSPACE_ID = "GET_WORKSPACE_ID";
 exports.WORKSPACE_COUNT = "GET_WORKSPACE_COUNT";
 exports.ValueProviders = [
     {
@@ -20,6 +22,40 @@ exports.ValueProviders = [
                     }
                 `, options);
                 return result.data.items[0].name;
+            };
+        },
+        inject: [monday_service_1.MONDAY_SERVICE],
+    },
+    {
+        provide: exports.FOLDER_ID,
+        useFactory: (service) => {
+            return async (boardId) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */ `
+                    query GetFolderId($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            board_folder_id
+                        }
+                    }
+                `, options);
+                return result.data.boards[0].board_folder_id;
+            };
+        },
+        inject: [monday_service_1.MONDAY_SERVICE],
+    },
+    {
+        provide: exports.WORKSPACE_ID,
+        useFactory: (service) => {
+            return async (boardId) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */ `
+                    query GetWorkspaceId($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            workspace_id
+                        }
+                    }
+                `, options);
+                return result.data.boards[0].workspace_id;
             };
         },
         inject: [monday_service_1.MONDAY_SERVICE],
