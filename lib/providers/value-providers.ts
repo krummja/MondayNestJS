@@ -3,6 +3,8 @@ import { MONDAY_SERVICE, MondayService } from "../monday.service";
 
 export const ITEM_NAME = "GET_ITEM_NAME";
 export const GROUP_TITLE = "GET_GROUP_TITLE";
+export const FOLDER_ID = "GET_FOLDER_ID";
+export const WORKSPACE_ID = "GET_WORKSPACE_ID";
 export const WORKSPACE_COUNT = "GET_WORKSPACE_COUNT";
 
 export const ValueProviders: Provider[] = [
@@ -21,6 +23,42 @@ export const ValueProviders: Provider[] = [
                 `, options);
 
                 return result.data.items[0].name;
+            };
+        },
+        inject: [MONDAY_SERVICE],
+    },
+    {
+        provide: FOLDER_ID,
+        useFactory: (service: MondayService) => {
+            return async (boardId: string) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */`
+                    query GetFolderId($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            board_folder_id
+                        }
+                    }
+                `, options);
+
+                return result.data.boards[0].board_folder_id;
+            };
+        },
+        inject: [MONDAY_SERVICE],
+    },
+    {
+        provide: WORKSPACE_ID,
+        useFactory: (service: MondayService) => {
+            return async (boardId: string) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */`
+                    query GetWorkspaceId($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            workspace_id
+                        }
+                    }
+                `, options);
+
+                return result.data.boards[0].workspace_id;
             };
         },
         inject: [MONDAY_SERVICE],
