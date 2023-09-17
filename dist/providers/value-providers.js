@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValueProviders = exports.WORKSPACE_COUNT = exports.WORKSPACE_ID = exports.FOLDER_ID = exports.GROUP_TITLE = exports.ITEM_NAME = void 0;
+exports.ValueProviders = exports.WORKSPACE_COUNT = exports.WORKSPACE_ID = exports.BOARD_METADATA = exports.FOLDER_ID = exports.GROUP_TITLE = exports.ITEM_NAME = void 0;
 const monday_service_1 = require("../monday.service");
 exports.ITEM_NAME = "GET_ITEM_NAME";
 exports.GROUP_TITLE = "GET_GROUP_TITLE";
 exports.FOLDER_ID = "GET_FOLDER_ID";
+exports.BOARD_METADATA = "GET_BOARD_METADATA";
 exports.WORKSPACE_ID = "GET_WORKSPACE_ID";
 exports.WORKSPACE_COUNT = "GET_WORKSPACE_COUNT";
 exports.ValueProviders = [
@@ -22,6 +23,39 @@ exports.ValueProviders = [
                     }
                 `, options);
                 return result.data.items[0].name;
+            };
+        },
+        inject: [monday_service_1.MONDAY_SERVICE],
+    },
+    {
+        provide: exports.BOARD_METADATA,
+        useFactory: (service) => {
+            return async (boardId) => {
+                const options = { variables: { boardId } };
+                const result = await service.sdk.api(/* GraphQL */ `
+                    query GetBoardMetadata($boardId: ID!) {
+                        boards(ids: [$boardId]) {
+                            id
+                            name
+                            type
+                            board_kind
+
+                            workspace_id
+                            board_folder_id
+
+                            columns {
+                                id
+                                title
+                                type
+                            }
+
+                            groups {
+                                id
+                                title
+                            }
+                        }
+                    }
+                `, options);
             };
         },
         inject: [monday_service_1.MONDAY_SERVICE],
