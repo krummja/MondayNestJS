@@ -65,6 +65,7 @@ exports.ValueProviders = [
 
                                     group {
                                         id
+                                        title
                                     }
                                 }
                             }
