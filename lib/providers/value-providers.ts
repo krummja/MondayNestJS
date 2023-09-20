@@ -54,6 +54,13 @@ export const ValueProviders: Provider[] = [
                                 id
                                 title
                             }
+
+                            items_page {
+                                items {
+                                    id
+                                    name
+                                }
+                            }
                         }
                     }
                 `, options);
