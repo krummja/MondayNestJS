@@ -53,6 +53,13 @@ exports.ValueProviders = [
                                 id
                                 title
                             }
+
+                            items_page {
+                                items {
+                                    id
+                                    name
+                                }
+                            }
                         }
                     }
                 `, options);
