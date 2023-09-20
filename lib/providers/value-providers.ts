@@ -66,6 +66,7 @@ export const ValueProviders: Provider[] = [
 
                                     group {
                                         id
+                                        title
                                     }
                                 }
                             }
