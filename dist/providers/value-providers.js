@@ -58,6 +58,14 @@ exports.ValueProviders = [
                                 items {
                                     id
                                     name
+
+                                    board {
+                                        id
+                                    }
+
+                                    group {
+                                        id
+                                    }
                                 }
                             }
                         }
