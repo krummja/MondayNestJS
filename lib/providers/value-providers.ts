@@ -59,6 +59,14 @@ export const ValueProviders: Provider[] = [
                                 items {
                                     id
                                     name
+
+                                    board {
+                                        id
+                                    }
+
+                                    group {
+                                        id
+                                    }
                                 }
                             }
                         }
