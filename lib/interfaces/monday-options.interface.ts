@@ -12,6 +12,7 @@ export type MondayModuleOptions = {
     signingSecret?: string;
     oauthToken?: string;
     routes?: (string | Type<any> | RouteInfo)[];
+    webhookRoutes?: (string | Type<any> | RouteInfo)[];
 };
 
 

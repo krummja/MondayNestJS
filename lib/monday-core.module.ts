@@ -148,6 +148,12 @@ export class MondayCoreModule implements OnApplicationShutdown, NestModule {
         consumer
             .apply(
                 MondayWebhookMiddleware,
+            ).forRoutes(
+                ...this.options.webhookRoutes,
+            );
+
+        consumer
+            .apply(
                 MondayAuthMiddleware,
                 MondayTokenMiddleware,
                 MondayInputMiddleware,
