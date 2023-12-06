@@ -10,7 +10,7 @@ export class MondayWebhookMiddleware implements NestMiddleware {
 
         if (Object.keys(req.body).includes("challenge")) {
             res.send(req.body);
-            return next("route");
+            // return next("route");
         }
 
         else {
