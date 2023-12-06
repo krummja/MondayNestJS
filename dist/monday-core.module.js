@@ -117,7 +117,9 @@ let MondayCoreModule = exports.MondayCoreModule = MondayCoreModule_1 = class Mon
     }
     configure(consumer) {
         consumer
-            .apply(middleware_1.MondayWebhookMiddleware, middleware_1.MondayAuthMiddleware, middleware_1.MondayTokenMiddleware, middleware_1.MondayInputMiddleware).forRoutes(...this.options.routes);
+            .apply(middleware_1.MondayWebhookMiddleware).forRoutes(...this.options.webhookRoutes);
+        consumer
+            .apply(middleware_1.MondayAuthMiddleware, middleware_1.MondayTokenMiddleware, middleware_1.MondayInputMiddleware).forRoutes(...this.options.routes);
     }
     async onApplicationShutdown(signal) {
         // TODO Shutdown error logging.
