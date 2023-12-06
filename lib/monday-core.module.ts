@@ -23,6 +23,7 @@ import {
     MondayAuthMiddleware,
     MondayTokenMiddleware,
     MondayInputMiddleware,
+    MondayWebhookMiddleware,
 } from "./middleware";
 
 import { MondaySdkAdapter } from "./interfaces";
@@ -146,6 +147,7 @@ export class MondayCoreModule implements OnApplicationShutdown, NestModule {
     public configure(consumer: MiddlewareConsumer): void {
         consumer
             .apply(
+                MondayWebhookMiddleware,
                 MondayAuthMiddleware,
                 MondayTokenMiddleware,
                 MondayInputMiddleware,
