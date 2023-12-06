@@ -20,4 +20,3 @@ __exportStar(require("./interfaces"), exports);
 __exportStar(require("./monday.constants"), exports);
 __exportStar(require("./monday.module"), exports);
 __exportStar(require("./providers"), exports);
-__exportStar(require("./webhooks"), exports);
