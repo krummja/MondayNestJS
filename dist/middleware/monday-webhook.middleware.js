@@ -10,6 +10,7 @@ exports.MondayWebhookMiddleware = void 0;
 const common_1 = require("@nestjs/common");
 let MondayWebhookMiddleware = exports.MondayWebhookMiddleware = class MondayWebhookMiddleware {
     use(req, res, next) {
+        console.log(req);
         res = res.status(200);
         if (Object.keys(req.body).includes("challenge")) {
             res.send(req.body);
