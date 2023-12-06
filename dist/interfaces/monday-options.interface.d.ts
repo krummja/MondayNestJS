@@ -10,6 +10,7 @@ export type MondayModuleOptions = {
     oauthToken?: string;
     routes?: (string | Type<any> | RouteInfo)[];
     webhookRoutes?: (string | Type<any> | RouteInfo)[];
+    inputRoutes?: (string | Type<any> | RouteInfo)[];
 };
 export interface MondayOptionsFactory {
     createMondayModuleOptions(): Promise<MondayModuleOptions> | MondayModuleOptions;
