@@ -14,6 +14,7 @@ let MondayWebhookMiddleware = exports.MondayWebhookMiddleware = class MondayWebh
         res = res.status(200);
         if (Object.keys(req.body).includes("challenge")) {
             res.send(req.body);
+            return next("route");
         }
         else {
             res.send();
