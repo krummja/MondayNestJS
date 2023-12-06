@@ -6,8 +6,6 @@ import { Request, Response, NextFunction } from "express";
 export class MondayWebhookMiddleware implements NestMiddleware {
 
     public use(req: Request, res: Response, next: NextFunction): void {
-        console.log(req);
-
         res = res.status(200);
 
         if (Object.keys(req.body).includes("challenge")) {
